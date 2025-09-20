@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-// Class to represent a single root from the JSON
+// Class to represent a single root
 class Root {
     public String base;
     public String value;
@@ -16,7 +16,7 @@ class Root {
     }
 }
 
-// Class to hold n and k from the JSON
+// Class to hold n and k
 class Keys {
     public int n;
     public int k;
@@ -70,7 +70,6 @@ public class Main {
                     String x_j_str = rootKeys.get(j);
                     BigInteger x_j = new BigInteger(x_j_str);
 
-                    // Lagrange interpolation formula: (0 - x_j) / (x_i - x_j)
                     BigInteger numerator = BigInteger.ZERO.subtract(x_j);
                     BigInteger denominator = x_i.subtract(x_j);
                     
@@ -83,7 +82,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Test Case 1
+        // Test Case 1 data hardcoded
         Map<String, Root> roots1 = new HashMap<>();
         roots1.put("1", new Root("10", "4"));
         roots1.put("2", new Root("2", "111"));
@@ -91,20 +90,5 @@ public class Main {
         roots1.put("6", new Root("4", "213"));
         TestCase testCase1 = new TestCase(new Keys(4, 3), roots1);
         System.out.println("Secret for Test Case 1: " + findSecret(testCase1));
-
-        // Test Case 2
-        Map<String, Root> roots2 = new HashMap<>();
-        roots2.put("1", new Root("6", "13444211440455345511"));
-        roots2.put("2", new Root("15", "aed7015a346d635"));
-        roots2.put("3", new Root("15", "6aeeb69631c227c"));
-        roots2.put("4", new Root("16", "e1b5e05623d881f"));
-        roots2.put("5", new Root("8", "316034514573652620673"));
-        roots2.put("6", new Root("3", "2122212201122002221120200210011020220200"));
-        roots2.put("7", new Root("3", "20120221122211000100210021102001201112121"));
-        roots2.put("8", new Root("6", "20220554335330240002224253"));
-        roots2.put("9", new Root("12", "45153788322a1255483"));
-        roots2.put("10", new Root("7", "1101613130313526312514143"));
-        TestCase testCase2 = new TestCase(new Keys(10, 7), roots2);
-        System.out.println("Secret for Test Case 2: " + findSecret(testCase2));
     }
 }
